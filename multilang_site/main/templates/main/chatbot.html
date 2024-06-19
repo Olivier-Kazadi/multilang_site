@@ -1,0 +1,22 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <title>{% trans "Chatbot" %}</title>
+    </head>
+    <body>
+        <h1>{% trans "Chatbot" %}</h1>
+        <form method="post">
+            {% csrf_token %}
+            <textarea name="question" rows="4" cols="50"></textarea>
+            <br>
+            <input type="submit" value="{% trans 'Ask' %}">
+        </form>
+        {% if answer%}
+            <h2>{% trans "Answer" %}</h2>
+            <p>{{answer}}</p>
+        {% endif %}
+    </body>
+</html>

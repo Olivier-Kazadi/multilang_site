@@ -1,0 +1,29 @@
+{% load i18n %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article List</title>
+</head>
+<body>
+    <h1>{% trans "Articles" %}</h1>
+
+    <!-- Langue -->
+     <form action="{%url 'set_language' %}" method="post">
+        {% csrf_token %}
+        <select name="language">
+            <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif%}>English</option>
+            <option value="fr" {% if LANGUAGE_CODE == 'fr' %}selected{% endif%}>Français</option>
+        </select>
+        <button type="submit">{% trans "Change Language"%}</button>
+     </form>
+    <ul>
+        {% for article in articles%}
+            <li>
+                {{ article.title }} - {{ article.publication_date }}
+            </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
